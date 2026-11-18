@@ -1,0 +1,193 @@
+{
+  "titulo_arquivo": "Plano de acao com IA - Cliente Exemplo",
+  "marca": {
+    "nome": "Sua Marca",
+    "slogan": "Consultoria de IA para empresas de serviço",
+    "site": "suamarca.com.br",
+    "logo": "",
+    "logo_monocromatica": true
+  },
+  "pessoa": {
+    "nome": "Seu Nome",
+    "cargo": "Consultor de IA e tecnologia",
+    "foto": ""
+  },
+  "paginas": [
+    {
+      "tipo": "capa",
+      "kicker": "Cliente Exemplo · 17/11/2026",
+      "titulo": "Plano de ação\ncom IA",
+      "subtitulo": "O caminho para a tecnologia trabalhar para você: mais tempo, mais margem e os números na mão.",
+      "rodape_direita": "Material confidencial",
+      "foto": "unsplash-OqxPH8c1UFE.jpg"
+    },
+    {
+      "tipo": "numeros",
+      "foto": "unsplash-OqJ_YPwRAXY.jpg",
+      "numeros": [
+        {"valor": "+50", "rotulo": "projetos"},
+        {"valor": "+2 mil", "rotulo": "pessoas treinadas"},
+        {"valor": "3", "rotulo": "estados"}
+      ]
+    },
+    {
+      "tipo": "destaque",
+      "numero": "+50",
+      "rotulo": "projetos\nentregues",
+      "foto": "unsplash-loDPKt_srQ0.jpg",
+      "logos": 12
+    },
+    {
+      "tipo": "frase",
+      "titulo": "A agenda cheia.\nSobra pouco tempo para o resto.",
+      "texto": "E é no resto que a margem se decide."
+    },
+    {
+      "tipo": "lista",
+      "lado": "dir",
+      "kicker": "O seu dia a dia",
+      "titulo": "O que pesa hoje",
+      "texto": "O que importa fica para quando estiver tranquilo.",
+      "foto": "unsplash-OqJ_YPwRAXY.jpg",
+      "itens": [
+        {"icone": "pasta", "titulo": "Tudo espalhado", "texto": "E-mail, WhatsApp, agenda e contas, cada coisa num lugar."},
+        {"icone": "relogio", "titulo": "A folga vira hora de responder mensagem", "texto": "O descanso some no que ficou acumulado."},
+        {"icone": "grafico", "titulo": "Os números chegam por terceiros", "texto": "Para saber como vai o mês, é preciso pedir para alguém."},
+        {"icone": "ia", "titulo": "A IA ainda não entende você", "texto": "Você pede, ela erra, e você acaba fazendo sozinho."},
+        {"icone": "ampulheta", "titulo": "Decisão sua parada", "texto": "Enquanto você atende, o que depende de você espera."}
+      ]
+    },
+    {
+      "tipo": "frase",
+      "titulo": "Conselheiro de confiança\nem tecnologia.",
+      "texto": "Um segundo olho na busca pela margem, mês a mês."
+    },
+    {
+      "tipo": "temas",
+      "titulo": "Conselheiro\nde confiança",
+      "texto": "Acompanha os seus números de perto e leva o plano de ação pronto para a sua decisão.",
+      "rotulo_temas": "Os temas que o conselheiro conduz, com tecnologia e IA",
+      "foto": "unsplash-OqxPH8c1UFE.jpg",
+      "temas": [
+        {"icone": "moeda", "nome": "Margem de cada serviço"},
+        {"icone": "grafico", "nome": "Vendas"},
+        {"icone": "calendario", "nome": "Agenda e rotina"},
+        {"icone": "ferramenta", "nome": "Custos da operação"},
+        {"icone": "contrato", "nome": "Contratos e clientes"},
+        {"icone": "porcentagem", "nome": "Fontes de receita"},
+        {"icone": "ia", "nome": "Inteligência artificial"},
+        {"icone": "repete", "nome": "Eficiência operacional"},
+        {"icone": "redes", "nome": "Redes e público"},
+        {"icone": "predio", "nome": "Novas praças"},
+        {"icone": "equipe", "nome": "Produtividade da equipe"},
+        {"icone": "cadeado", "nome": "Segurança e acessos"}
+      ]
+    },
+    {
+      "tipo": "ordem",
+      "kicker": "O método · a ordem",
+      "titulo": "O que dá mais retorno,\nprimeiro",
+      "texto": "Cada ponto encontrado ganha nota em quatro critérios. O de maior nota vem primeiro, um assunto por vez.",
+      "legenda": "Os pontos encontrados, pela nota de cada um",
+      "foto": "unsplash-loDPKt_srQ0.jpg",
+      "criterios": [
+        {"icone": "grafico", "nome": "Valor", "texto": "Quanto dinheiro volta."},
+        {"icone": "relogio", "nome": "Urgência", "texto": "Quanto custa esperar."},
+        {"icone": "escudo", "nome": "Risco", "texto": "Quanto prejuízo evita."},
+        {"icone": "balanca", "nome": "Esforço", "texto": "Quanto trabalho pede."}
+      ]
+    },
+    {
+      "tipo": "mosaico",
+      "titulo": "Os números\nnum lugar só.",
+      "texto": "Juntamos num painel os números do que você já usa, como estes ao lado.",
+      "foto": "unsplash-OqxPH8c1UFE.jpg",
+      "blocos": [
+        {"icone": "email", "nome": "E-mail"},
+        {"icone": "calendario", "nome": "Agenda"},
+        {"icone": "balao", "nome": "WhatsApp"},
+        {"icone": "carrinho", "nome": "Vendas"},
+        {"icone": "moeda", "nome": "Financeiro"},
+        {"icone": "contrato", "nome": "Contratos"},
+        {"icone": "balanca", "nome": "Jurídico"},
+        {"icone": "equipe", "nome": "Equipe"},
+        {"icone": "redes", "nome": "Redes sociais"},
+        {"icone": "anuncio", "nome": "Anúncios"},
+        {"icone": "pessoa", "nome": "Clientes"},
+        {"icone": "caminhao", "nome": "Entregas"}
+      ],
+      "faixa": [
+        {"icone": "casa", "titulo": "Seus dados ficam com você", "texto": "nada copiado para fora"},
+        {"icone": "olho", "titulo": "Só para ler", "texto": "nada muda nos seus sistemas"},
+        {"icone": "repete", "titulo": "Sem sistema novo", "texto": "o que você já usa, conectado"}
+      ]
+    },
+    {
+      "tipo": "numerada",
+      "kicker": "Inteligência artificial",
+      "titulo": "Por que tem gente\ncom medo de IA",
+      "texto": "E por que quem conhece o próprio negócio só tem a ganhar.",
+      "foto": "unsplash-OqJ_YPwRAXY.jpg",
+      "itens": [
+        {"titulo": "A IA responde pela média do que aprendeu.", "texto": "Sozinha, ela erra no que é só seu."},
+        {"titulo": "O que tira da média é o conhecimento do negócio.", "texto": "E esse conhecimento é o seu."},
+        {"titulo": "Quem só repassava o que a IA já faz tem motivo para medo.", "texto": "Quem acrescenta, não."}
+      ]
+    },
+    {
+      "tipo": "grade",
+      "kicker": "O plano · mês a mês",
+      "titulo": "Um passo grande por mês",
+      "linhas": [
+        {"fase": "Meses 1 a 3", "sub": "A base", "celulas": [
+          {"tipo": "forte", "tag": "Mês 1", "titulo": "Você no controle", "texto": "IA no celular, agenda, e-mail e prioridades."},
+          {"tipo": "claro", "tag": "Mês 2", "titulo": "Vendas", "texto": "Do primeiro contato ao contrato assinado."},
+          {"tipo": "claro", "tag": "Mês 3", "titulo": "Dinheiro", "texto": "Custos e a margem de cada serviço."}
+        ]},
+        {"fase": "Meses 4 a 6", "sub": "O crescimento", "celulas": [
+          {"tipo": "claro", "tag": "Mês 4", "titulo": "Digital", "texto": "Redes, anúncios e público, em números."},
+          {"tipo": "claro", "tag": "Mês 5", "titulo": "Jurídico", "texto": "Contratos e documentos em ordem."},
+          {"tipo": "claro", "tag": "Mês 6", "titulo": "Indicadores e equipe", "texto": "Os números da empresa num lugar só."}
+        ]}
+      ],
+      "nota": "Cada mês continua evoluindo depois que o seguinte começa. Primeiro você, depois o time.",
+      "legenda": {"forte": "Primeiro você", "claro": "Depois, a empresa"}
+    },
+    {
+      "tipo": "proposta",
+      "titulo": "Nossa\nproposta,\npor mês.",
+      "foto": "unsplash-loDPKt_srQ0.jpg",
+      "caixas": [
+        {"destaque": true, "rotulo": "O serviço", "nome": "Conselheiro de confiança em tecnologia", "valor": "R$ 5", "unidade_valor": "mil", "unidade": "por mês", "detalhe": "Contrato de 6 meses."},
+        {"rotulo": "Duração", "valor": "6", "unidade_valor": "meses", "unidade": "um passo por mês", "detalhe": "O plano inteiro, do mês 1 ao 6."},
+        {"rotulo": "Início", "valor": "1º", "unidade_valor": "dez", "unidade": "segunda-feira", "detalhe": "A semana do primeiro encontro."}
+      ],
+      "faixa": [
+        {"icone": "calendario", "titulo": "Os 6 meses do plano", "texto": "mês a mês"},
+        {"icone": "balao", "titulo": "WhatsApp o tempo todo", "texto": "você e a sua equipe"},
+        {"icone": "grafico", "titulo": "Junto com a sua equipe", "texto": "nos números da empresa"}
+      ]
+    },
+    {
+      "tipo": "proposta",
+      "titulo": "Proposta\nfinal.",
+      "texto": "Para quem fecha os 6 meses, o workshop do time entra sem custo.",
+      "foto": "unsplash-OqJ_YPwRAXY.jpg",
+      "caixas": [
+        {"destaque": true, "rotulo": "O serviço", "nome": "Conselheiro de confiança em tecnologia", "valor": "R$ 5", "unidade_valor": "mil", "unidade": "por mês", "detalhe": "6 meses de contrato."},
+        {"rotulo": "Bonificação", "nome": "Workshop de IA para o time", "valor": "R$ 10", "unidade_valor": "mil", "riscado": true, "largura": 1.4, "unidade": "sem custo, com os 6 meses", "detalhe": "Até 20 pessoas, melhor depois do 1º mês."}
+      ],
+      "faixa": [
+        {"icone": "calendario", "titulo": "Início em 1º/12", "texto": "a semana do primeiro encontro"},
+        {"icone": "contrato", "titulo": "A condição: os 6 meses", "texto": "a bonificação vem com o contrato"},
+        {"icone": "ia", "titulo": "Mentoria individual", "texto": "à parte, quando quiser"}
+      ]
+    },
+    {
+      "tipo": "obrigado",
+      "citacao": "A melhor hora para começar foi ontem. A segunda melhor é hoje.",
+      "autor": "Ditado popular",
+      "proximo_passo": "Assinatura digital hoje; primeiro encontro na semana de 1º de dezembro."
+    }
+  ]
+}
