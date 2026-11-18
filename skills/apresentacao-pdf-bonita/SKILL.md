@@ -38,7 +38,11 @@ um `conteudo.json` e roda `scripts/montar.py`.
 4. **Para quem é:** nome do cliente e a data. Pule se for a apresentação da empresa.
 5. **Os números da empresa:** três números com rótulo (ex.: `+50 projetos`, `+2 mil pessoas
    treinadas`, `3 estados`) e **um número de destaque**, o maior orgulho, que vira a página do número
-   gigante.
+   gigante recortado na foto colorida da montanha. Pergunte esse número sempre, com o que ele mede
+   (ex.: `+50` e `projetos entregues`): é a página que mais chama a atenção. Sem o número, a página
+   fica no material com um exemplo bem marcado, `"numero": "+00"` e `"rotulo": "[seu número]\n[o que
+   ele mede]"`, e você avisa que falta. Nunca tire a página de números nem a de destaque por falta
+   de número: deixe o marcador.
 6. **Os clientes:** arquivos das logos (até 12) ou só os nomes. Sem permissão para mostrar,
    use as logos genéricas `Empresa 1` a `Empresa 12` (é o padrão: `"logos": 12`).
 7. **O que pesa hoje no cliente:** de 4 a 6 dores, cada uma com um título curto e uma frase.
@@ -48,9 +52,11 @@ um `conteudo.json` e roda `scripts/montar.py`.
    workshop.
 10. **A oferta:** o serviço, o preço, a duração, o início e uma bonificação, se houver. Ao cliente
     vão o preço total e os benefícios, nunca o custo interno.
-11. **As fotos:** pergunte se a pessoa tem fotos dela, da equipe ou do cliente. Sem fotos, use as
-    três que vêm com a skill (`assets/fotos/`). Também dá para baixar fotos gratuitas do Unsplash
-    pelo tema, mas só com o ok da pessoa. Toda foto vira preto e branco sozinha.
+11. **As fotos:** pergunte se a pessoa tem fotos dela, da equipe ou do cliente. Sem fotos, deixe o
+    montador usar as que vêm com a skill (`assets/fotos/`, todas do Unsplash): cada tipo de página já
+    tem a sua foto de fundo, e é ela que deixa o material bonito. Também dá para baixar fotos
+    gratuitas do Unsplash pelo tema, mas só com o ok da pessoa. Toda foto vira preto e branco
+    sozinha, menos a do número de destaque, que fica colorida dentro do número.
 12. **O versículo:** a última página traz um texto bíblico. Pergunte qual versículo a pessoa quer,
     com uma sugestão que combine com o material, a recomendada primeiro. Por exemplo:
     1. Colossenses 3:23: "Tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor, e não aos
@@ -73,8 +79,8 @@ todos os tipos, está em `exemplos/plano-de-acao-com-ia.json`. Comece copiando e
 | tipo | o que é | campos |
 |---|---|---|
 | `capa` | foto de fundo, letra gigante vazada, título | `kicker`, `titulo`, `subtitulo`, `rodape_direita`, `foto`, `letra` |
-| `numeros` | a marca grande e três números | `numeros` [`valor`, `rotulo`], `slogan`, `foto` |
-| `destaque` | um número gigante com a foto dentro e a faixa de logos | `numero`, `rotulo`, `foto`, `logos` (número ou lista de nomes/arquivos) |
+| `numeros` | a marca grande e três números sobre a foto de fundo | `numeros` [`valor`, `rotulo`], `slogan`, `foto` |
+| `destaque` | um número gigante recortado na foto colorida (a montanha), sobre a mesma foto em preto e branco, e a faixa de logos | `numero` (com `+` na frente, o `+` sai separado), `rotulo`, `foto`, `cor` (`false` deixa o número em preto e branco), `tamanho`, `logos` (número ou lista de nomes/arquivos) |
 | `frase` | uma frase grande no branco (ou no preto com `"escuro": true`) | `titulo`, `texto` |
 | `lista` | título, subtítulo e lista com ícones que desce até ocupar a página, com foto em diagonal | `lado` (`dir`/`esq`; vazio alterna sozinho), `kicker`, `titulo`, `texto` (o subtítulo), `itens` [`icone`, `titulo`, `texto`], `fim`, `foto` |
 | `temas` | grade de temas com ícone e foto ao lado | `titulo`, `texto`, `rotulo_temas`, `temas` [`icone`, `nome`], `foto` |
@@ -96,8 +102,10 @@ todos os tipos, está em `exemplos/plano-de-acao-com-ia.json`. Comece copiando e
   olho, onda, ingresso, predio, moeda, contrato, balanca, redes, anuncio, caminhao, alvo, check,
   carrinho, coracao, escudo, foguete, pessoa, lupa, engrenagem.
 - **Fotos**: caminho do arquivo (relativo ao `conteudo.json`), ou o nome de uma das fotos de
-  `assets/fotos/`. Sem foto, a página usa uma textura escura. `foto_posicao` (ex.: `"30% 50%"`)
-  ajusta o recorte.
+  `assets/fotos/`. Sem a chave `foto`, a página usa a foto padrão do seu tipo (a lista está em
+  `assets/fotos/CREDITOS.md`; a 1ª e a 2ª `lista` e `proposta` pegam fotos diferentes). Com
+  `"foto": ""`, a página fica com uma textura escura. `foto_posicao` (ex.: `"30% 50%"`) ajusta o
+  recorte. Prefira deixar as fotos de fundo: sem elas o material perde a força.
 
 Uma ordem que funciona para proposta: capa, numeros, destaque, frase (a dor em uma frase), lista
 (o que pesa hoje), frase (a virada), temas, ordem, mosaico, numerada, grade, proposta, proposta

@@ -133,16 +133,21 @@ h1,h2{font-weight:900;letter-spacing:-.045em;line-height:.98}
 .nm .marca .mono{width:150px;height:150px;border-width:8px;font-size:64px;margin-right:44px;letter-spacing:-.03em}
 .nm .marca img{height:170px;filter:brightness(0) invert(1)}
 .nm .slogan{position:absolute;left:76px;top:350px;font-size:36px;color:#e6e6e6}
-.nm .lin{position:absolute;left:72px;bottom:150px;display:flex}
+.nm .lin{position:absolute;left:72px;top:640px;display:flex}
 .nm .lin div{padding:0 64px 0 36px;border-left:1px solid rgba(255,255,255,.35);color:#fff}
 .nm .lin div:first-child{padding-left:0;border-left:0}
-.nm .lin b{display:block;font-size:84px;font-weight:500;letter-spacing:-.04em;line-height:1}
+.nm .lin b{display:block;font-size:96px;font-weight:500;letter-spacing:-.04em;line-height:1}
 .nm .lin span{display:block;font-size:20px;color:#bdbdbd;margin-top:14px}
 /* destaque */
 .dq .alto{position:absolute;left:0;right:0;top:0;height:780px;background:#0a0a0a;overflow:hidden}
-.dq .num{position:absolute;left:0;right:0;top:-30px;text-align:center;font-size:680px;font-weight:900;letter-spacing:-.07em;line-height:1;
- background-size:cover;background-position:center;-webkit-background-clip:text;background-clip:text;color:transparent}
-.dq .rot{position:absolute;left:72px;top:150px;color:#fff;font-size:44px;font-weight:800;line-height:1.05;width:420px}
+.dq .alto>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.62)}
+.dq .alto .vel{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.05) 60%,rgba(0,0,0,.2))}
+.dq .num,.dq .mais{position:absolute;inset:0;font-weight:900;line-height:1;background-size:cover;background-repeat:no-repeat;
+ -webkit-background-clip:text;background-clip:text;color:transparent}
+.dq .num{display:flex;align-items:center;justify-content:center;padding-left:240px;letter-spacing:-.07em}
+.dq .mais{padding:62px 0 0 128px;font-size:300px;letter-spacing:0}
+.dq .rot{position:absolute;left:156px;top:300px;color:#fff;font-size:44px;font-weight:800;line-height:1.05;width:420px}
+.dq .rot.so{left:72px;top:110px}
 .dq .logos{position:absolute;left:72px;right:72px;top:810px;bottom:30px;display:grid;grid-template-columns:repeat(6,1fr);align-items:center;justify-items:center;row-gap:16px}
 .dq .logos img{max-height:62px;max-width:200px;object-fit:contain;filter:grayscale(1)}
 .lg-g{font-size:34px;color:#2a2a2a;white-space:nowrap}
@@ -247,6 +252,20 @@ h1,h2{font-weight:900;letter-spacing:-.045em;line-height:.98}
 .ob .px p{font-size:31px;line-height:1.36;font-weight:600;margin-top:12px}
 """
 
+# Foto de cada tipo de página quando o conteudo.json não diz 'foto' (todas em assets/fotos, do Unsplash).
+# Lista de fotos: a 1ª página daquele tipo pega a 1ª foto, a 2ª pega a 2ª, e assim por diante.
+FOTOS_PADRAO = {
+    'capa': 'unsplash-OqxPH8c1UFE.jpg',
+    'numeros': 'unsplash-7weXfu_XTSw.jpg',
+    'destaque': 'unsplash-AQg-g3ztQME.jpg',
+    'lista': ['unsplash-QckxruozjRg.jpg', 'unsplash-YyVutZ7zmV4.jpg'],
+    'temas': 'unsplash-OqxPH8c1UFE.jpg',
+    'ordem': 'unsplash-DZpc4UY8ZtY.jpg',
+    'mosaico': 'unsplash-1RT4txDDAbM.jpg',
+    'numerada': 'unsplash-JyRTi3LoQnc.jpg',
+    'proposta': ['unsplash-roZgc7SXXmI.jpg', 'unsplash-r0J9sGBWFOc.jpg'],
+}
+
 # Logos genéricas: cada "Empresa N" num estilo diferente, para a faixa de clientes parecer de verdade.
 ESTILOS_LOGO = [
     'font-weight:900;font-style:italic;letter-spacing:-.04em',
@@ -272,23 +291,37 @@ class Deck:
         self.pessoa = dados.get('pessoa', {})
         self.arquivos = {}  # origem -> nome em assets/
         self.ultimo_lado = None  # lado da foto da última página 'lista'
+        self.contagem = {}  # quantas páginas de cada tipo já pegaram foto padrão
 
     # ---------- imagens
-    def img(self, caminho):
-        """Copia a imagem para o build e devolve o caminho relativo; '' se não houver."""
+    def foto_de(self, s):
+        """A foto da página. Sem a chave 'foto', usa a foto padrão do tipo; com "foto": "", fica a textura."""
+        if 'foto' in s:
+            return s.get('foto')
+        padrao = FOTOS_PADRAO.get(s.get('tipo'))
+        if isinstance(padrao, list):
+            n = self.contagem.get(s.get('tipo'), 0)
+            self.contagem[s.get('tipo')] = n + 1
+            padrao = padrao[n % len(padrao)]
+        return padrao or ''
+
+    def img(self, caminho, cor=False):
+        """Copia a imagem para o build e devolve o caminho relativo; '' se não houver.
+        Foto sai em preto e branco; com cor=True, sai colorida (o número do destaque)."""
         if not caminho:
             return ''
         for tentativa in (caminho, os.path.join(self.base, caminho), os.path.join(ASSETS, 'fotos', caminho)):
             p = os.path.expanduser(tentativa)
             if os.path.isfile(p):
                 p = os.path.abspath(p)
-                if p not in self.arquivos:
+                chave = (p, bool(cor))
+                if chave not in self.arquivos:
                     raiz, ext = os.path.splitext(os.path.basename(p))
                     if ext.lower() in ('.jpg', '.jpeg', '.webp', '.heic'):
                         ext = '.jpg'
-                    nome = f'{len(self.arquivos):02d}-{raiz}{ext}'
-                    self.arquivos[p] = nome
-                return 'assets/img/' + self.arquivos[p]
+                    nome = f'{len(self.arquivos):02d}-{raiz}{"-cor" if cor else ""}{ext}'
+                    self.arquivos[chave] = nome
+                return 'assets/img/' + self.arquivos[chave]
         print(f'  aviso: imagem não encontrada: {caminho} (uso a textura no lugar)')
         return ''
 
@@ -354,7 +387,7 @@ class Deck:
         svg = (f'<svg class="letra" viewBox="0 0 900 1000"><text x="450" y="850" text-anchor="middle" '
                f'font-family="SG" font-weight="900" font-size="1050" fill="none" stroke="#fff" stroke-width="5">'
                f'{letra}</text></svg>')
-        return ('<div class="s esc cp">' + self.fundo(s.get('foto'), s.get('foto_posicao', '50% 50%'))
+        return ('<div class="s esc cp">' + self.fundo(self.foto_de(s), s.get('foto_posicao', '50% 50%'))
                 + '<div class="ov"></div>' + svg + self.logo('esq')
                 + self.kicker(s.get('kicker'), True)
                 + f'<h1>{multi(s.get("titulo"))}</h1><p class="sub">{esc(s.get("subtitulo"))}</p>'
@@ -372,15 +405,27 @@ class Deck:
                      f'<span style="font-size:{tam}px">{esc(nome)}</span>')
         lin = ''.join(f'<div><b>{esc(n.get("valor"))}</b><span>{esc(n.get("rotulo"))}</span></div>'
                       for n in s.get('numeros', []))
-        return ('<div class="s esc nm">' + self.fundo(s.get('foto'), s.get('foto_posicao', '50% 50%'))
+        return ('<div class="s esc nm">' + self.fundo(self.foto_de(s), s.get('foto_posicao', '50% 50%'))
                 + '<div class="ov"></div>'
                 + f'<div class="marca">{marca}</div><div class="slogan">{esc(s.get("slogan") or self.marca.get("slogan"))}</div>'
                 + f'<div class="lin">{lin}</div></div>')
 
     def destaque(self, s):
-        src = self.img(s.get('foto'))
-        fundo_num = (f'background-image:url({src})' if src else
-                     'background-image:linear-gradient(160deg,#f2f2f2 0%,#9a9a9a 45%,#2a2a2a 100%)')
+        foto = self.foto_de(s)
+        pos = s.get('foto_posicao', '50% 50%')
+        pb = self.img(foto)
+        cor = self.img(foto, cor=s.get('cor', True)) if pb else ''
+        numero = str(s.get('numero') or '')
+        sinal = numero[:1] if numero[:1] in '+-' and len(numero) > 1 else ''
+        corpo = numero[len(sinal):]
+        tam = s.get('tamanho') or min(880, int(1500 / (0.62 * max(len(corpo), 1))))
+        if pb:
+            fundo_num = f'background-image:url({cor});background-position:{esc(pos)}'
+            alto = f'<img src="{pb}" style="object-position:{esc(pos)}" alt=""><div class="vel"></div>'
+        else:
+            fundo_num = 'background-image:linear-gradient(160deg,#f2f2f2 0%,#9a9a9a 45%,#2a2a2a 100%)'
+            alto = ''
+        mais = f'<div class="mais" style="{fundo_num}">{esc(sinal)}</div>' if sinal else ''
         logos = s.get('logos')
         if isinstance(logos, int) or logos is None:
             logos = [f'Empresa {i + 1}' for i in range(logos if isinstance(logos, int) else 12)]
@@ -392,9 +437,9 @@ class Deck:
                 cels.append(f'<img src="{caminho}" alt="">')
             else:
                 cels.append(f'<span class="lg-g" style="{ESTILOS_LOGO[i % len(ESTILOS_LOGO)]}">{esc(lg)}</span>')
-        return ('<div class="s dq"><div class="alto">'
-                + f'<div class="num" style="{fundo_num}">{esc(s.get("numero"))}</div>'
-                + f'<div class="rot">{multi(s.get("rotulo"))}</div></div>'
+        return ('<div class="s dq"><div class="alto">' + alto + mais
+                + f'<div class="num" style="{fundo_num};font-size:{tam}px">{esc(corpo)}</div>'
+                + f'<div class="rot{"" if sinal else " so"}">{multi(s.get("rotulo"))}</div></div>'
                 + f'<div class="logos">{"".join(cels)}</div></div>')
 
     def frase(self, s):
@@ -414,7 +459,7 @@ class Deck:
         fim = f'<p class="fim">{esc(s.get("fim"))}</p>' if s.get('fim') else ''
         n = len(s.get('itens', []))
         h2 = 72 if n <= 5 else 64
-        return (f'<div class="s ld {lado}"><div class="foto">{self.foto_bloco(s.get("foto"), s.get("foto_posicao", "50% 50%"))}</div>'
+        return (f'<div class="s ld {lado}"><div class="foto">{self.foto_bloco(self.foto_de(s), s.get("foto_posicao", "50% 50%"))}</div>'
                 + self.logo('br' if lado == 'dir' else '') + '<div class="tx">' + self.kicker(s.get('kicker'))
                 + f'<h2 style="font-size:{h2}px">{multi(s.get("titulo"))}</h2>'
                 + (f'<p>{esc(s.get("texto"))}</p>' if s.get('texto') else '')
@@ -423,7 +468,7 @@ class Deck:
     def temas(self, s):
         gr = ''.join(f'<div>{icone(t.get("icone"), 34, "#0a0a0a")}<span>{esc(t.get("nome"))}</span></div>'
                      for t in s.get('temas', []))
-        return ('<div class="s tm">' + f'<div class="foto">{self.foto_bloco(s.get("foto"), s.get("foto_posicao", "50% 50%"))}</div>'
+        return ('<div class="s tm">' + f'<div class="foto">{self.foto_bloco(self.foto_de(s), s.get("foto_posicao", "50% 50%"))}</div>'
                 + self.logo('br') + '<div class="tx">' + self.kicker(s.get('kicker'))
                 + f'<h2>{multi(s.get("titulo"))}</h2><p>{esc(s.get("texto"))}</p>'
                 + f'<div class="rt">{esc(s.get("rotulo_temas", ""))}</div><div class="gr">{gr}</div></div></div>')
@@ -434,7 +479,7 @@ class Deck:
         gf = ''.join(f'<i style="height:{max(4, round(v / mx * 100))}%"></i>' for v in barras)
         cr = ''.join(f'<div>{icone(c.get("icone"), 40, "#0a0a0a")}<div><b>{esc(c.get("nome"))}</b>'
                      f'<span>{esc(c.get("texto"))}</span></div></div>' for c in s.get('criterios', []))
-        return ('<div class="s od">' + f'<div class="foto">{self.foto_bloco(s.get("foto"), s.get("foto_posicao", "50% 50%"))}</div>'
+        return ('<div class="s od">' + f'<div class="foto">{self.foto_bloco(self.foto_de(s), s.get("foto_posicao", "50% 50%"))}</div>'
                 + self.logo() + '<div class="tx">' + self.kicker(s.get('kicker'))
                 + f'<h2>{multi(s.get("titulo"))}</h2><p>{esc(s.get("texto"))}</p>'
                 + f'<div class="gf"><small>{esc(s.get("rotulo_primeiro", "Começamos por aqui"))}</small>{gf}</div>'
@@ -444,7 +489,7 @@ class Deck:
         gr = ''.join(f'<div>{icone(b.get("icone"), 56, "#fff")}<b>{esc(b.get("nome"))}</b></div>'
                      for b in s.get('blocos', [])[:12])
         topo = 140 + 100 * (multi(s.get('titulo')).count('<br>') + 1) + 40
-        return ('<div class="s esc ms">' + self.fundo(s.get('foto'), s.get('foto_posicao', '50% 50%'))
+        return ('<div class="s esc ms">' + self.fundo(self.foto_de(s), s.get('foto_posicao', '50% 50%'))
                 + '<div class="ov2"></div>' + self.logo()
                 + f'<h2>{multi(s.get("titulo"))}</h2>'
                 + (f'<p class="lead" style="top:{topo}px">{esc(s.get("texto"))}</p>' if s.get('texto') else '')
@@ -453,7 +498,7 @@ class Deck:
     def numerada(self, s):
         li = ''.join(f'<li><i>{i + 1:02d}</i><div><b>{esc(it.get("titulo"))}</b><span>{esc(it.get("texto"))}</span></div></li>'
                      for i, it in enumerate(s.get('itens', [])))
-        return ('<div class="s esc nu">' + self.fundo(s.get('foto'), s.get('foto_posicao', '50% 50%'))
+        return ('<div class="s esc nu">' + self.fundo(self.foto_de(s), s.get('foto_posicao', '50% 50%'))
                 + '<div class="ov"></div>' + self.logo() + '<div class="tx">' + self.kicker(s.get('kicker'), True)
                 + f'<h2>{multi(s.get("titulo"))}</h2><p>{esc(s.get("texto"))}</p><ol>{li}</ol></div></div>')
 
@@ -497,7 +542,7 @@ class Deck:
                    f'<div class="un">{esc(c.get("unidade"))}</div><div class="det">{esc(c.get("detalhe"))}</div></div>')
             x += w + gap
         topo = 140 + 100 * (multi(s.get('titulo')).count('<br>') + 1) + 40
-        return ('<div class="s esc pp">' + self.fundo(s.get('foto'), s.get('foto_posicao', '50% 50%'))
+        return ('<div class="s esc pp">' + self.fundo(self.foto_de(s), s.get('foto_posicao', '50% 50%'))
                 + '<div class="ov2"></div>' + self.logo() + f'<h2>{multi(s.get("titulo"))}</h2>'
                 + (f'<p class="lead" style="top:{topo}px">{esc(s.get("texto"))}</p>' if s.get('texto') else '')
                 + cx + self.faixa(s.get('faixa')) + '</div>')
@@ -516,7 +561,7 @@ class Deck:
         for i, s in enumerate(self.d.get('paginas', [])):
             tipo = s.get('tipo')
             f = getattr(self, tipo, None) if tipo and not tipo.startswith('_') else None
-            if not callable(f) or tipo in ('img', 'fundo', 'foto_bloco', 'logo', 'logo_provisoria', 'iniciais',
+            if not callable(f) or tipo in ('img', 'fundo', 'foto_bloco', 'foto_de', 'logo', 'logo_provisoria', 'iniciais',
                                            'kicker', 'faixa', 'montar_html'):
                 raise SystemExit(f'página {i + 1}: tipo desconhecido "{tipo}"')
             corpo.append(f(s))
@@ -525,7 +570,7 @@ class Deck:
                 f'<style>{CSS}</style></head><body>' + '\n'.join(corpo) + '</body></html>')
 
 
-def preparar_imagem(origem, destino):
+def preparar_imagem(origem, destino, cor=False):
     """Foto: preto e branco e no máximo 2400 px, já no arquivo (filtro no CSS deixa o PDF com 50 MB).
     Logo e PNG com transparência: cópia como está."""
     ext = os.path.splitext(origem)[1].lower()
@@ -537,7 +582,7 @@ def preparar_imagem(origem, destino):
     except ImportError:
         shutil.copy2(origem, destino)
         return
-    im = ImageOps.exif_transpose(Image.open(origem)).convert('L')
+    im = ImageOps.exif_transpose(Image.open(origem)).convert('RGB' if cor else 'L')
     im.thumbnail((2400, 2400))
     im.save(destino, 'JPEG', quality=82, optimize=True, progressive=True)
 
@@ -577,8 +622,8 @@ def main():
 
     deck = Deck(dados, base)
     h = deck.montar_html()
-    for origem, nome in deck.arquivos.items():
-        preparar_imagem(origem, os.path.join(build, 'assets', 'img', nome))
+    for (origem, cor), nome in deck.arquivos.items():
+        preparar_imagem(origem, os.path.join(build, 'assets', 'img', nome), cor)
     html_path = os.path.join(build, 'apresentacao.html')
     open(html_path, 'w', encoding='utf-8').write(h)
 

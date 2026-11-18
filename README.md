@@ -9,7 +9,7 @@ O PDF de exemplo, com 14 páginas, está em [docs/exemplo.pdf](docs/exemplo.pdf)
 
 ## O que sai
 
-- Uma apresentação 1920x1080 em preto e branco, com fotos, ícones e tipografia forte.
+- Uma apresentação 1920x1080 em preto e branco, com fotos de fundo, ícones e tipografia forte.
 - Capa, números da empresa, número de destaque com a foto dentro, faixa de logos de clientes, lista
   do que pesa hoje, temas, método, cronograma mês a mês, caixas de preço e o "Obrigado." no fim.
 - O PDF, o HTML que gerou ele e, se quiser, um PowerPoint para apresentar.
@@ -55,7 +55,7 @@ mandar ao cliente.
 
 ## Fotos e fonte
 
-As três fotos de exemplo são do Unsplash e a fonte é a Schibsted Grotesk (SIL Open Font License).
+As dez fotos que vêm com a skill são do Unsplash (Licença Unsplash, uso comercial livre) e a fonte é a Schibsted Grotesk (SIL Open Font License).
 Créditos em [assets/fotos/CREDITOS.md](skills/apresentacao-pdf-bonita/assets/fotos/CREDITOS.md).
 
 ## Quem fez
