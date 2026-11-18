@@ -45,11 +45,12 @@ O Claude vai perguntar, uma coisa por vez:
 3. os seus números e os clientes que você pode mostrar;
 4. o que pesa hoje no cliente e como você resolve;
 5. a oferta, o preço e o cronograma;
-6. as fotos.
+6. as fotos;
+7. o versículo bíblico da última página (ele sugere um).
 
 Ele gera o PDF, confere cada página e te mostra. Você pede os ajustes e ele gera de novo.
 
-Sem logos de clientes, a faixa sai com logos genéricas ("Empresa 1" a "Empresa 12"). Troque antes de
+Sem a sua logo, sai uma logo provisória com as suas iniciais. Sem logos de clientes, a faixa sai com logos genéricas ("Empresa 1" a "Empresa 12"). Troque antes de
 mandar ao cliente.
 
 ## Fotos e fonte

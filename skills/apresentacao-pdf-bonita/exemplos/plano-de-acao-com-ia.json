@@ -44,7 +44,6 @@
     },
     {
       "tipo": "lista",
-      "lado": "dir",
       "kicker": "O seu dia a dia",
       "titulo": "O que pesa hoje",
       "texto": "O que importa fica para quando estiver tranquilo.",
@@ -185,8 +184,8 @@
     },
     {
       "tipo": "obrigado",
-      "citacao": "A melhor hora para começar foi ontem. A segunda melhor é hoje.",
-      "autor": "Ditado popular",
+      "citacao": "Tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor, e não aos homens.",
+      "autor": "Colossenses 3:23 (Almeida Corrigida Fiel)",
       "proximo_passo": "Assinatura digital hoje; primeiro encontro na semana de 1º de dezembro."
     }
   ]

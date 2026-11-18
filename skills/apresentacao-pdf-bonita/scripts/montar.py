@@ -106,14 +106,16 @@ html,body{background:#fff;font-family:'SG',Helvetica,Arial,sans-serif;color:#0a0
 .tex::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.035) 0 2px,transparent 2px 22px)}
 .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.62) 45%,rgba(0,0,0,.35) 100%)}
 .ov2{position:absolute;inset:0;background:rgba(0,0,0,.55)}
-.logo{position:absolute;top:56px;right:72px;height:44px;display:flex;align-items:center;z-index:5}
+.logo{position:absolute;top:56px;right:72px;height:44px;display:flex;align-items:center;z-index:5;color:#0a0a0a}
+.esc .logo,.logo.br{color:#fff}
+.mono{display:inline-grid;place-items:center;flex:none;width:44px;height:44px;border:3px solid currentColor;font-weight:900;font-size:20px;letter-spacing:-.02em;line-height:1;margin-right:14px}
 .logo img{height:44px;max-width:320px;object-fit:contain}
-.logo b{font-size:40px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.logo b{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1;white-space:nowrap}
 .esc .logo img{filter:brightness(0) invert(1)}
 .logo img.pb{filter:brightness(0)}
 .esc .logo img.pb{filter:brightness(0) invert(1)}
 .logo.esq{left:72px;right:auto}
-.logo.br b{color:#fff}.logo.br img{filter:brightness(0) invert(1)}
+.logo.br img{filter:brightness(0) invert(1)}
 .k{font-size:17px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:12px;color:#3a3a3a}
 .esc .k,.k.cl{color:#bdbdbd}
 .k i{font-style:normal;font-size:22px;color:#0a0a0a}
@@ -127,7 +129,8 @@ h1,h2{font-weight:900;letter-spacing:-.045em;line-height:.98}
 .cp .letra{position:absolute;right:-40px;top:40px;height:1000px;width:900px}
 .cp .pe{position:absolute;left:72px;right:72px;bottom:44px;display:flex;justify-content:space-between;font-size:18px;color:#bdbdbd;border-top:1px solid rgba(255,255,255,.25);padding-top:20px}
 /* números */
-.nm .marca{position:absolute;left:72px;top:150px;font-size:170px;font-weight:900;letter-spacing:-.05em;color:#fff;line-height:1}
+.nm .marca{position:absolute;left:72px;top:150px;font-size:170px;font-weight:900;letter-spacing:-.05em;color:#fff;line-height:1;display:flex;align-items:center;white-space:nowrap}
+.nm .marca .mono{width:150px;height:150px;border-width:8px;font-size:64px;margin-right:44px;letter-spacing:-.03em}
 .nm .marca img{height:170px;filter:brightness(0) invert(1)}
 .nm .slogan{position:absolute;left:76px;top:350px;font-size:36px;color:#e6e6e6}
 .nm .lin{position:absolute;left:72px;bottom:150px;display:flex}
@@ -148,20 +151,20 @@ h1,h2{font-weight:900;letter-spacing:-.045em;line-height:.98}
 .fr h2{font-size:92px;max-width:1500px}
 .fr p{font-size:30px;color:#5a5a5a;margin-top:44px;max-width:1200px;line-height:1.4}
 .fr.esc p{color:#bdbdbd}
-/* lista com foto ao lado */
+/* lista com foto ao lado: título no alto, subtítulo, e os itens descem até ocupar a página */
 .ld .foto{position:absolute;top:0;bottom:0;width:860px;overflow:hidden}
 .ld .foto img{width:100%;height:100%;object-fit:cover}
 .ld.dir .foto{right:0;clip-path:polygon(22% 0,100% 0,100% 100%,0 100%)}
 .ld.esq .foto{left:0;clip-path:polygon(0 0,100% 0,78% 100%,0 100%)}
-.ld .tx{position:absolute;top:120px;width:1060px}
-.ld.dir .tx{left:72px}.ld.esq .tx{left:800px;width:1050px}
-.ld .tx h2{font-size:76px;margin-top:22px}
-.ld .tx>p{font-size:29px;line-height:1.4;color:#3a3a3a;margin-top:22px}
-.ld .l{margin-top:30px;border-top:1px solid #d6d6d6}
-.ld .l>div{display:grid;grid-template-columns:62px 1fr;align-items:center;padding:13px 0;border-bottom:1px solid #d6d6d6}
+.ld .tx{position:absolute;top:96px;bottom:84px;width:980px;display:flex;flex-direction:column}
+.ld.dir .tx{left:72px}.ld.esq .tx{left:900px;width:948px}
+.ld .tx h2{font-size:72px;margin-top:20px}
+.ld .tx>p{font-size:29px;line-height:1.4;color:#3a3a3a;margin-top:20px}
+.ld .l{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;margin-top:44px;border-top:1px solid #d6d6d6}
+.ld .l>div{flex:1 1 0;max-height:170px;display:grid;grid-template-columns:62px 1fr;align-items:center;padding:12px 0;border-bottom:1px solid #d6d6d6}
 .ld .l b{display:block;font-size:28px;font-weight:800;letter-spacing:-.01em}
-.ld .l span{display:block;font-size:22px;color:#5a5a5a;margin-top:3px}
-.ld .fim{font-size:29px;font-weight:800;margin-top:24px;line-height:1.3}
+.ld .l span{display:block;font-size:22px;color:#5a5a5a;margin-top:4px}
+.ld .tx .fim{flex:none;font-size:29px;font-weight:800;margin-top:24px;line-height:1.3}
 .ld.esc .tx>p{color:#cfcfcf}.ld.esc .l,.ld.esc .l>div{border-color:rgba(255,255,255,.2)}.ld.esc .l span{color:#bdbdbd}
 /* temas */
 .tm .foto{position:absolute;right:0;top:0;bottom:0;width:700px;clip-path:polygon(24% 0,100% 0,100% 100%,0 100%);overflow:hidden}
@@ -175,7 +178,7 @@ h1,h2{font-weight:900;letter-spacing:-.045em;line-height:.98}
 /* ordem */
 .od .foto{position:absolute;left:0;top:0;bottom:0;width:860px;clip-path:polygon(0 0,100% 0,78% 100%,0 100%);overflow:hidden}
 .od .foto img{width:100%;height:100%;object-fit:cover}
-.od .tx{position:absolute;left:800px;top:110px;width:1050px}
+.od .tx{position:absolute;left:900px;top:110px;width:948px}
 .od h2{font-size:84px;margin-top:22px}
 .od .tx>p{font-size:28px;line-height:1.4;color:#3a3a3a;margin-top:24px}
 .od .gf{position:relative;margin-top:70px;height:230px;display:flex;align-items:flex-end;gap:12px;border-bottom:1.5px solid #0a0a0a}
@@ -268,6 +271,7 @@ class Deck:
         self.marca = dados.get('marca', {})
         self.pessoa = dados.get('pessoa', {})
         self.arquivos = {}  # origem -> nome em assets/
+        self.ultimo_lado = None  # lado da foto da última página 'lista'
 
     # ---------- imagens
     def img(self, caminho):
@@ -300,10 +304,26 @@ class Deck:
             return f'<img src="{src}" style="object-position:{esc(pos)}" alt="">'
         return '<div class="tex" style="position:absolute;inset:0"></div>'
 
+    def iniciais(self):
+        """Iniciais da marca para a logo provisória: 'Sua Marca' -> 'SM'. 'iniciais' na marca manda."""
+        if self.marca.get('iniciais'):
+            return str(self.marca['iniciais'])[:3].upper()
+        palavras = [p for p in str(self.marca.get('nome') or '').replace('&', ' ').split()
+                    if p.lower() not in ('de', 'da', 'do', 'das', 'dos', 'e')]
+        if not palavras:
+            return 'A'
+        if len(palavras) == 1:
+            return palavras[0][:2].upper()
+        return (palavras[0][0] + palavras[-1][0]).upper()
+
+    def logo_provisoria(self):
+        """Sem arquivo de logo: monograma com as iniciais num quadrado e o nome ao lado."""
+        return f'<span class="mono">{esc(self.iniciais())}</span><b>{esc(self.marca.get("nome"))}</b>'
+
     def logo(self, extra=''):
         lg = self.img(self.marca.get('logo'))
         pb = ' class="pb"' if self.marca.get('logo_monocromatica', True) else ''
-        corpo = f'<img src="{lg}"{pb} alt="{esc(self.marca.get("nome"))}">' if lg else f'<b>{esc(self.marca.get("nome"))}</b>'
+        corpo = f'<img src="{lg}"{pb} alt="{esc(self.marca.get("nome"))}">' if lg else self.logo_provisoria()
         return f'<div class="logo {extra}">{corpo}</div>'
 
     def kicker(self, t, claro=False):
@@ -343,7 +363,13 @@ class Deck:
 
     def numeros(self, s):
         lg = self.img(self.marca.get('logo'))
-        marca = f'<img src="{lg}" alt="">' if lg else esc(self.marca.get('nome'))
+        if lg:
+            marca = f'<img src="{lg}" alt="">'
+        else:
+            nome = str(self.marca.get('nome') or '')
+            tam = min(150, int(1560 / (0.53 * max(len(nome), 1))))
+            marca = (f'<span class="mono">{esc(self.iniciais())}</span>'
+                     f'<span style="font-size:{tam}px">{esc(nome)}</span>')
         lin = ''.join(f'<div><b>{esc(n.get("valor"))}</b><span>{esc(n.get("rotulo"))}</span></div>'
                       for n in s.get('numeros', []))
         return ('<div class="s esc nm">' + self.fundo(s.get('foto'), s.get('foto_posicao', '50% 50%'))
@@ -378,12 +404,16 @@ class Deck:
                 + (f'<p>{esc(s.get("texto"))}</p>' if s.get('texto') else '') + '</div>')
 
     def lista(self, s):
-        lado = 'esq' if s.get('lado') == 'esq' else 'dir'
+        lado = s.get('lado')
+        if lado not in ('dir', 'esq'):
+            # Sem lado escolhido, a foto alterna: lista após lista troca de lado.
+            lado = 'esq' if self.ultimo_lado == 'dir' else 'dir'
+        self.ultimo_lado = lado
         itens = ''.join(f'<div>{icone(i.get("icone"), 38, "#0a0a0a")}<div><b>{esc(i.get("titulo"))}</b>'
                         f'<span>{esc(i.get("texto"))}</span></div></div>' for i in s.get('itens', []))
         fim = f'<p class="fim">{esc(s.get("fim"))}</p>' if s.get('fim') else ''
         n = len(s.get('itens', []))
-        h2 = 76 if n <= 5 else 66
+        h2 = 72 if n <= 5 else 64
         return (f'<div class="s ld {lado}"><div class="foto">{self.foto_bloco(s.get("foto"), s.get("foto_posicao", "50% 50%"))}</div>'
                 + self.logo('br' if lado == 'dir' else '') + '<div class="tx">' + self.kicker(s.get('kicker'))
                 + f'<h2 style="font-size:{h2}px">{multi(s.get("titulo"))}</h2>'
@@ -486,7 +516,8 @@ class Deck:
         for i, s in enumerate(self.d.get('paginas', [])):
             tipo = s.get('tipo')
             f = getattr(self, tipo, None) if tipo and not tipo.startswith('_') else None
-            if not callable(f) or tipo in ('img', 'fundo', 'foto_bloco', 'logo', 'kicker', 'faixa', 'montar_html'):
+            if not callable(f) or tipo in ('img', 'fundo', 'foto_bloco', 'logo', 'logo_provisoria', 'iniciais',
+                                           'kicker', 'faixa', 'montar_html'):
                 raise SystemExit(f'página {i + 1}: tipo desconhecido "{tipo}"')
             corpo.append(f(s))
         titulo = esc(self.d.get('titulo_arquivo') or 'Apresentação')

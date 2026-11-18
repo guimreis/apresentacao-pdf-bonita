@@ -30,7 +30,9 @@ um `conteudo.json` e roda `scripts/montar.py`.
    3. Apresentação da minha empresa, sem cliente
    4. Oferta de workshop ou mentoria
 2. **Quem apresenta:** nome da empresa ou marca, uma frase do que faz, o site, e o arquivo da logo
-   (PNG com fundo transparente é o melhor; sem logo, o nome vira a logo, escrito na fonte do deck).
+   (PNG com fundo transparente é o melhor). Sem logo, o montador faz uma logo provisória: um
+   monograma com as iniciais num quadrado e o nome ao lado (`"Sua Marca"` vira `SM`; para outras
+   letras, preencha `iniciais` na `marca`). Diga à pessoa que é provisória.
 3. **Quem fala:** nome, cargo e uma foto de rosto (opcional). Aparece na faixa de baixo das
    páginas de preço.
 4. **Para quem é:** nome do cliente e a data. Pule se for a apresentação da empresa.
@@ -49,8 +51,19 @@ um `conteudo.json` e roda `scripts/montar.py`.
 11. **As fotos:** pergunte se a pessoa tem fotos dela, da equipe ou do cliente. Sem fotos, use as
     três que vêm com a skill (`assets/fotos/`). Também dá para baixar fotos gratuitas do Unsplash
     pelo tema, mas só com o ok da pessoa. Toda foto vira preto e branco sozinha.
-12. **O fecho:** uma frase ou citação para a última página (opcional) e o próximo passo
-    (ex.: "Assinatura digital hoje; primeiro encontro na semana de 1º de dezembro.").
+12. **O versículo:** a última página traz um texto bíblico. Pergunte qual versículo a pessoa quer,
+    com uma sugestão que combine com o material, a recomendada primeiro. Por exemplo:
+    1. Colossenses 3:23: "Tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor, e não aos
+       homens." (recomendado para proposta e serviço)
+    2. Provérbios 27:23: "Procura conhecer o estado das tuas ovelhas; põe o teu coração sobre os teus
+       rebanhos." (para quem cuida de patrimônio, finanças ou gestão)
+    3. Provérbios 16:3: "Confia ao Senhor as tuas obras, e teus pensamentos serão estabelecidos."
+    4. Outro que a pessoa escolher, ou nenhum.
+
+    Confira o texto numa Bíblia antes de pôr (a Almeida Corrigida Fiel está em bibliaonline.com.br)
+    e ponha o livro, o capítulo, o versículo e a tradução em `autor`.
+13. **O fecho:** o próximo passo (ex.: "Assinatura digital hoje; primeiro encontro na semana de 1º de
+    dezembro.").
 
 ## O catálogo de páginas
 
@@ -63,16 +76,18 @@ todos os tipos, está em `exemplos/plano-de-acao-com-ia.json`. Comece copiando e
 | `numeros` | a marca grande e três números | `numeros` [`valor`, `rotulo`], `slogan`, `foto` |
 | `destaque` | um número gigante com a foto dentro e a faixa de logos | `numero`, `rotulo`, `foto`, `logos` (número ou lista de nomes/arquivos) |
 | `frase` | uma frase grande no branco (ou no preto com `"escuro": true`) | `titulo`, `texto` |
-| `lista` | lista com ícones e foto em diagonal | `lado` (`dir`/`esq`), `kicker`, `titulo`, `texto`, `itens` [`icone`, `titulo`, `texto`], `fim`, `foto` |
+| `lista` | título, subtítulo e lista com ícones que desce até ocupar a página, com foto em diagonal | `lado` (`dir`/`esq`; vazio alterna sozinho), `kicker`, `titulo`, `texto` (o subtítulo), `itens` [`icone`, `titulo`, `texto`], `fim`, `foto` |
 | `temas` | grade de temas com ícone e foto ao lado | `titulo`, `texto`, `rotulo_temas`, `temas` [`icone`, `nome`], `foto` |
 | `ordem` | o método: gráfico de barras e quatro critérios | `kicker`, `titulo`, `texto`, `legenda`, `criterios` [`icone`, `nome`, `texto`], `barras`, `foto` |
 | `mosaico` | blocos escuros com ícone sobre a foto | `titulo`, `texto`, `blocos` [`icone`, `nome`], `faixa`, `foto` |
 | `numerada` | 01, 02, 03 no fundo escuro | `kicker`, `titulo`, `texto`, `itens` [`titulo`, `texto`], `foto` |
 | `grade` | cronograma: linhas e células | `kicker`, `titulo`, `linhas` [`fase`, `sub`, `celulas` [`tipo`, `tag`, `titulo`, `texto`]], `nota`, `legenda` |
 | `proposta` | caixas de preço sobre a foto | `titulo`, `texto`, `caixas` [`destaque`, `rotulo`, `nome`, `valor`, `unidade_valor`, `unidade`, `detalhe`, `riscado`, `largura`], `faixa`, `foto` |
-| `obrigado` | o fecho em preto | `citacao`, `autor`, `proximo_passo` |
+| `obrigado` | o fecho em preto, com o versículo | `citacao` (o versículo), `autor` (livro, capítulo:versículo e tradução), `proximo_passo` |
 
 - **Quebra de linha** no título: `\n`.
+- **Lado da foto** na `lista`: sem `lado`, a primeira lista tem a foto à direita e cada lista seguinte
+  troca de lado. Os itens se espalham na altura da página; de 4 a 6 itens fica melhor.
 - **Tipos de célula** na `grade`: `forte` (preta), `claro` (cinza) e `borda` (branca com contorno).
 - **Faixa** (`faixa`) nas páginas `mosaico` e `proposta`: a pessoa de `pessoa` mais até 3 itens
   [`icone`, `titulo`, `texto`].
